@@ -73,7 +73,7 @@ public class CategoriaController {
 
     @RequestMapping("/delete")
     public String delete(
-        @ResquestParam("id") long id,
+        @RequestParam("id") long id,
         Model ui) {
         
         Optional<Categoria> categoria = categoriaRepo.findById(id);
@@ -87,7 +87,7 @@ public class CategoriaController {
     }
     
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(@ResquestParam("id") long id ) {
+    public String delete(@RequestParam("id") long id ) {
         categoriaRepo.deleteById(id);
         
         return "redirect:/categoria/lqist";
