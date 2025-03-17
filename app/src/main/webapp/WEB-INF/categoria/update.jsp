@@ -11,7 +11,7 @@
     <div class="container">
         <h1>Editar Categorias</h1>
         
-        <form action="/categoria/insert" method="post">
+        <form action="/categoria/update" method="post">
             <input type="hidden" name="id" id="id" value="${categoria.id}">
             
             <div class="form-group">
