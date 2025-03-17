@@ -23,7 +23,7 @@ public class Categoria {
     private String nome;
 
     @OneToMany(mappedBy = "categoria")
-    private Set<Jogo> jogos = new HashSet();
+    private Set<Jogo> jogos = new HashSet<Jogo>(); // fixed: HashSet Type
 
     public long getId() {
         return this.id;
