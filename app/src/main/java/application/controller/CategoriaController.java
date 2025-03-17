@@ -45,7 +45,7 @@ public class CategoriaController {
         @RequestParam("id") long id, 
         Model ui) {
 
-            Optional<Categoria> categoria = categoriaRepo.findBy(id);
+            Optional<Categoria> categoria = categoriaRepo.findById(id); // fixed: findBy doesn't exists
 
             if (categoria.isPresent()) {
                 ui.addAttribute("categoria", categoria.get());
@@ -60,7 +60,7 @@ public class CategoriaController {
         @RequestParam("id") long id, 
         @RequestParam("nome") String nome) {
 
-            Optional<Categoria> categoria = categoriaRepo.findBy(id);
+            Optional<Categoria> categoria = categoriaRepo.findById(id);
 
             if (categoria.isPresent()) {
                 categoria.get().setNome(nome);
