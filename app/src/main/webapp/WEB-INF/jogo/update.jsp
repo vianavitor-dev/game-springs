@@ -9,29 +9,35 @@
 </head>
 <body>
     <div class="container">
-        <h1>Nova ids</h1>
-        
+        <h1>Editar Jogo</h1>
         <form action="/id/insert" method="post">
+            <input type="hidden" name="id" value="${jogo.id}">
             <div class="form-group">
                 <label for="titulo">Titulo: </label>
-                <input type="text" name="titulo" id="titulo" class="form-control" value="${jogo.id}">
-            </div>
+                <input type="text" name="titulo" id="titulo" class="form-control" value="${jogo.titulo}">
+            </div>  
             <div class="form-group">
-                <label for="id">id: </label>
-                <input type="text" name="id" id="id" class="form-control">
+                <label for="categoria">Categoria: </label>
+                <select name="categoria" class="form-select">
+                    <c:forEach var="c" items="${categorias}">
+                        <option ${jogo.categoria.id == c.id ? "selected" : "" } value="${c.id}">${c.nome}</option>
+                    </c:forEach>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="plataformas">Plataforma(s): </label>
                 <c:forEach var="p" items="${plataformas}">
                     <div class="custom-control custom-checkbox">
-                        <input type="text" name="plataformas" id="${p.id}" value="${p.id}" class="custom-control-input">
+                        <input type="checkbox" ${jogo.plataformas.contains(p) ? "checked" : "" } 
+                            class="custom-control-input" name="plataformas" id="${p.id}"></input>
                         <label class="custom-control-label" for="${p.id}">${p.nome} </label>
                     </div>
                 </c:forEach>
             </div>
+            <br>
 
-            <a href="/id/list" class="btn btn-primary">Voltar </a>
+            <a href="/jogo/list" class="btn btn-primary">Voltar </a>
             <button type="submit" class="btn btn-success">Salvar </button>
         </form>
     </div>
