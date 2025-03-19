@@ -43,18 +43,20 @@ public class JogoController {
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(
         @RequestParam("titulo") String titulo,
-        @RequestParam("categorias") long idCategoria,
-        @RequestParam("plataformas") long[] idsPlataformas) {
+        @RequestParam("categoria") long idCategoria,
+        @RequestParam(value = "plataformas", required = false) long[] idsPlataformas) {
         
         Jogo jogo = new Jogo();
         jogo.setTitulo(titulo);
-        jogo.setCategoria(categoriaRepo.findById(idCategoria).get());
-        for (long p : idsPlataformas) {
-            Optional<Plataforma> plataforma = plataformaRepo.findById(p);
-            if (plataforma.isPresent()) {
-                jogo.getPlataformas().add(plataforma.get());
+        jogo.setCategoria(categoriaRepo.findById(idCategoria).orElse(null));
+        
+        if (idsPlataformas != null) {
+            for (long p : idsPlataformas) {
+                Optional<Plataforma> plataforma = plataformaRepo.findById(p);
+                plataforma.ifPresent(jogo.getPlataformas()::add);
             }
         }
+    
         jogoRepo.save(jogo);
         return "redirect:/jogo/list";
     }

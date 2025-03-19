@@ -18,8 +18,12 @@
                 <input type="text" name="titulo" id="titulo" class="form-control">
             </div>
             <div class="form-group">
-                <label for="jogo">Jogo: </label>
-                <input type="text" name="jogo" id="jogo" class="form-control">
+                <label for="categorias">Categorias: </label>
+                <select name="categoria" id="categoria" class="form-select">
+                    <c:forEach var="c" items="${categorias}">
+                        <option value="${c.id}">${c.nome}</option>
+                    </c:forEach>
+                </select>
             </div>
 
             <div class="form-group">
