@@ -26,12 +26,12 @@
                 <label for="plataformas">Plataforma(s): </label>
                 <c:forEach var="p" items="${plataformas}">
                     <div class="custom-control custom-checkbox">
-                        <input type="text" name="plataformas" id="${p.id}" value="${p.id}" class="custom-control-input">
+                        <input type="checkbox" name="plataformas" id="${p.id}" value="${p.id}" class="custom-control-input">
                         <label class="custom-control-label" for="${p.id}">${p.nome} </label>
                     </div>
                 </c:forEach>
             </div>
-
+            <br>
 
             <a href="/jogo/list" class="btn btn-primary">Voltar </a>
             <button type="submit" class="btn btn-success">Salvar </button>
